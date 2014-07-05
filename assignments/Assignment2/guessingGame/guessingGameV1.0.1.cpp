@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include <map>
+#include <stdlib.h>
 using namespace std;
 
 //Function Prototypes
@@ -8,7 +9,7 @@ bool isWon(int guess, int secret);
 string processInequality(int guess, int secret);
 int processMax(int guess, int rangeMax, int rangeMin, int secret);
 int processMin(int guess, int rangeMax, int rangeMin, int secret);
-int processClosest(map<int, int> guessHistory, int secret);
+int processClosest(int guess, int closest, int secret); 
 int processDifference(int guess, int secret);
 //Primary game data struct
 struct Game {
@@ -17,7 +18,6 @@ struct Game {
 	int guess;
 	int guesses;
 	int closest;
-	map<int, int> guessHistory;
 	int remaining;
 	int rangeMax;
 	int rangeMin;
@@ -27,6 +27,7 @@ struct Game {
 int main() {
 	Game game;
 	game.allowedGuesses = 4;
+	game.guesses = 0;
 	//EXECUTION
 	cout << "Player 1, please enter a secret for Player 2 to guess. " << endl;
 	cin >> game.secret;
@@ -42,13 +43,14 @@ int main() {
 		game.rangeMin = processMin(game.guess, game.rangeMax, game.rangeMin, game.secret);
 		cout << "**********************************************" << endl;
 		cout << "The secret is between " << game.rangeMin << " and " << game.rangeMax << endl;
-		cout << "Enter a secret to guess (You have " << game.remaining << " guesses remaining): " << endl;
+		cout << "Enter a number to guess (You have " << game.remaining << " guesses remaining): " << endl;
 		cin >> game.guess;
-		game.guessHistory[game.guess] = processDifference(game.guess, game.secret);
+        game.closest = processClosest(game.guess, game.closest, game.secret);
 		cout << "Your guess was " << processInequality(game.guess,game.secret) << " Player 1's secret!" << endl;
 	}
+	game.remaining = game.allowedGuesses - game.guesses;
 	game.isWon = isWon(game.guess, game.secret);
-	game.closest = processClosest(game.guessHistory, game.secret);
+    game.closest = processClosest(game.guess, game.closest, game.secret);
 	if (game.isWon)
 		cout << "CONGRATULATIONS!! You won!!" << endl;
 	else if (!game.isWon)
@@ -91,14 +93,14 @@ int processDifference(int guess, int secret) {
 	return secret - guess;
 }
 
-int processClosest(map<int, int> guessHistory, int secret) {
-	map<int, int>::iterator guess;
-	int closest;
-	for (guess = guessHistory.begin(); guess != guessHistory.end(); guess++) {
-		if ((guess->second) < (guessHistory[closest])) {
-			closest = (guess->first);
-		}
-	}
-	cout << closest;
-	return closest;	
+int processClosest(int guess, int closest, int secret) {
+    int guessDelta = secret - guess;
+    int closestDelta = secret - closest;
+    if (abs(guessDelta) < abs(closestDelta)) {
+        cout << "Setting closest to " << guess << endl;
+        return guess;
+    }
+    else {
+        return closest;
+    }
 }
