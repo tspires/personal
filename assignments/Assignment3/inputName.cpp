@@ -3,7 +3,7 @@
 
 using namespace std;
 
-string split(string target, char delimiter);
+void split(string target, char delimiter);
 int main() {
     string name;
     string firstName;
@@ -15,11 +15,11 @@ int main() {
     split(name,' '); 
 }
 
-string split(string target, char delimiter) {
+void split(string target, char delimiter) {
     string tmp;
-    cout << target.length() << endl;
     for (int i = 0; i < target.length(); i++) {
         cout << i << endl;
-        //tmp += target.at(i);
+        cout << target.at(i) << endl;
+	
     }
 }
