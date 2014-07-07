@@ -15,7 +15,9 @@ int main() {
 	cin >> coupons;
 	cout << "You have " << coupons << " coupons." << endl;
 	pocket["candybar"] = coupons / reward["candybar"];
-	pocket["gumball"] = coupons % reward["gumball"];
-	cout << "You can buy " << pocket["candybar"] << " candy bars." << endl
-	<< "And you can buy " << pocket["gumball"] << " gumballs." << endl;
+	pocket["gumball"] = (coupons % reward["candybar"]) / reward["gumball"];
+    coupons = (coupons % reward["candybar"]) % reward["gumball"];
+	cout << "You can buy " << pocket["candybar"] << " candy bars." << endl;
+	cout << "And you can buy " << pocket["gumball"] << " gumballs." << endl;
+    cout << "And you would have " << coupons << " coupons remaining." << endl;
 }
