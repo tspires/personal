@@ -14,10 +14,7 @@ int main() {
     getline(cin, targetOne);
     cout << "Please enter another string: " << endl;
     getline(cin, targetTwo);
-    if (targetOne.length() != targetTwo.length()) {
-	cout << notMatchMessage << endl;
-    }
-    else if (!areMatch(targetOne, targetTwo)) {	
+    if (!areMatch(targetOne, targetTwo)) {	
 	cout << notMatchMessage << endl;
     }
     else {
@@ -27,6 +24,15 @@ int main() {
 }
 
 bool areMatch(string one, string two) {
-    return false;
-
+    if (one.length() != two.length()) {
+	return false;
+    }
+    else {
+	for (int i = 0; i < one.length(); i++) {
+	    if (one.at(i) != two.at(i)){
+		return false;
+	    }
+	}
+    }
+    return true;
 }
