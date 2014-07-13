@@ -16,4 +16,5 @@ int main() {
 	myRandom = rand() % 20 + 10;
 	cout << i << ": " << myRandom << endl;
     } 
+    return 0;
 }

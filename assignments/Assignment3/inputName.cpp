@@ -21,6 +21,7 @@ int main() {
     else if (splitName.size() == 2) {
 	cout << splitName.at(1) << ", " << splitName.at(0) << endl;
     }
+    return 0;
 }
 
 //Simple split implemenetation
