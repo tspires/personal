@@ -1,73 +1,63 @@
 #include <iostream>
 #include <string.h>
- 
-short linear_search(char[], char, short = 0);
-#define VERSIONSTRING "Hangman [Version 1]"
-#define GUESSLIMIT 8
+short find(char list[], char value, short = 0);
 using namespace std; 
-int main(char argc, char * argv[]) {
- 
-char guess;
-bool guessed_it = false;
-char * secret = argv[1];
-char * blanks = new char[strlen(secret) + 1];
-short blanks_size = strlen(secret) + 1;
-char wrong_letters[GUESSLIMIT] = {0};
-short wrong_guesses = 0;
- 
-blanks[blanks_size - 1] = '\0';
-memset(blanks, '_', blanks_size - 1);
- 
-std::cout << VERSIONSTRING << "\n\n"
-<< "The secret is " << strlen(secret) << " long. "
-<< "If you guess it we'll let you free.\n"
-<< " If you guess wrong we'll hang you."
-<< std::endl;
- 
-while (wrong_guesses < GUESSLIMIT) {
-std::cout << "Word: " << blanks << " | "
-<< "Hearts: " << GUESSLIMIT - wrong_guesses << " "
-<< "Said letters [" << wrong_letters << "]"
-<< std::endl;
- 
-std::cout << "Guess> ";
-std::cin >> guess;
- 
-short index = linear_search(secret, guess);
- 
-if (index != -1) {
-do {
-blanks[index] = secret[index];
-index = linear_search(secret, guess, ++ index);
- 
-} while (index != -1);
- 
-if (strcmp(blanks, secret) == 0) {
-guessed_it = true;
-break;
+int main() {
+    //Temporary secret string to be converted later
+    string secretStr;
+    //Get secret from user
+    cout << "Please enter the secret. " << endl;
+    cin >> secretStr;
+    const int guessesAllowed = 5;
+    char guess;
+    bool isWon = false;
+    //Convert our secret string into a character array
+    char * secret = (char*) secretStr.c_str();
+    //Initialize a character array of the length of our secret so we can show the guessed word per turn
+    char * preview = new char[strlen(secret) + 1];
+    short preview_size = strlen(secret) + 1;
+    char wrongLetters[guessesAllowed] = {0};
+    short wrongGuesses = 0;
+    cout << "The secret is " << strlen(secret) << " characters. " << endl;
+    while (wrongGuesses < guessesAllowed) {
+        cout << "Secret: " << preview << " | " << "Remaining: " << guessesAllowed - wrongGuesses << " " << "You have guessed the letters : " << wrongLetters << endl;
+        cin >> guess;
+        short i = find(secret, guess);
+        //Loop to update preview. Stops when it can't find anymore of the guess in the secret
+        if (i != -1) {
+            do {
+                //Replace the preview position at i with the correct guess in the secret
+                preview[i] = secret[i];
+                //Find the position of the guess in the secret 
+                i = find(secret, guess, ++ i);
+            } while (i != -1);
+             
+            if (strcmp(preview, secret) == 0) {
+                isWon = true;
+                break;
+            }
+        }
+        else if (find(wrongLetters, guess) == -1) {
+            wrongLetters[wrongGuesses] = guess;
+            wrongGuesses++;
+        }
+    }
+    if (isWon) {
+        cout << "You win!" << endl;
+    }
+    else {
+        cout << "You lose!" << endl;
+    }
+    return 0;
 }
-}
-else if (linear_search(wrong_letters, guess) == -1) {
-wrong_letters[wrong_guesses] = guess;
-++ wrong_guesses;
-}
-}
- 
-if (guessed_it)
-std::cout << "You're free!" << std::endl;
-else
-std::cout << "They hung you!" << std::endl;
-return 0;
-}
- 
-short linear_search(char array[], char key, short offset) {
-short index = offset;
- 
-while (index < strlen(array)) {
-if (array[index] == key)
-return index;
-++ index;
-}
- 
-return -1;
+//A search function to find the position of value in the char array 
+short find(char list[], char value, short offset) {
+    short i = offset;
+    while (i < strlen(list)) {
+        if (list[i] == value) {
+            return i;
+        }
+        i++;
+    }
+    return -1;
 }
