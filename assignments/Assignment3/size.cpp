@@ -28,7 +28,8 @@ int main() {
         cout << "Your jacket size is " << round(jacketSize) << endl;
         cout << "Your waist size is " << round(waistSize) << endl;
         cout << "Your hat size is " << round(hatSize) << endl;
-        cout << "Would you like to go again? " << endl;
+        cout << "Note: All sizes are rounded up as clothing isn't sold in fractional sizes! " << endl;
+        cout << "Would you like to go again? [y/n]" << endl;
         cin >> response;
         if (response == 'y') {
             done = false;
