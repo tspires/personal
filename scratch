@@ -1,0 +1,3 @@
+
+CPP Function Regex
+(?<expo>public\:|protected\:|private\:) (?<ret>(const )*(void|int|unsigned int|long|unsigned long|float|double|(class .*)|(enum .*))) (?<decl>__thiscall|__cdecl|__stdcall|__fastcall|__clrcall) (?<ns>.*)\:\:(?<class>(.*)((<.*>)*))\:\:(?<method>(.*)((<.*>)*))\((?<params>((.*(<.*>)?)(,)?)*)\)
