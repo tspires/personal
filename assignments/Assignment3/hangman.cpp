@@ -25,13 +25,13 @@ int main() {
 		<< endl;
 
 	while (wrongGuesses < guessesAllowed) {
-        cout << "Secret: " << spaces << " | " << "Remaining: " << guessesAllowed - wrongGuesses << " " << "You have guessed the letters : " << wrongLetters << endl;
+        cout << "Secret: " << spaces << " | " << "Remaining: " << guessesAllowed - wrongGuesses << " " << "You have guessed the letters : " << wrongGuesses << endl;
 		cin >> guess;
 		short i = find(secret, guess);
 		if (i != -1) {
 			do {
 				spaces[i] = secret[i];
-				i = find(secret, guess, i++);
+				i = find(secret, guess, ++ i);
 			} while (i != -1);
 			if (strcmp(spaces, secret) == 0) {
 				isWon = true;
