@@ -10,6 +10,7 @@ int main() {
     int litersConsumed;
     double gallonsConsumed;
     double mpg;
+    cout.precision(4);
     while (done == false) {
 	cout << "How many liters of fuel did you use? " << endl;
 	cin >> litersConsumed;

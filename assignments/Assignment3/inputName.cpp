@@ -7,9 +7,6 @@ using namespace std;
 vector<string> split(string target, char delimiter);
 int main() {
     string name;
-    string firstName;
-    string lastName;
-    string middleInitial;
     vector<string> splitName; 
     cout << "Please enter your first and last name with middle initial." << endl;
     getline(cin,name);
