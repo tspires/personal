@@ -12,7 +12,7 @@ int main() {
     i = requestDouble("interest amount");
     n = requestDouble("compounding period");
     P = compound(P,i,n);
-    cout << "Your interest after " << n << " years would be " << P << " dollars." << endl;
+    cout << "Your balance after " << n << " years would be " << P << " dollars." << endl;
     return 0;
 }
 
