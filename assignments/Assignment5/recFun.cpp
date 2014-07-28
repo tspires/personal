@@ -1,22 +1,17 @@
 #include <iostream>
 
 using namespace std;
-
-int fibonacci(int n);
-
+int fibonacci(int x);
 int main() {
-    int x = 3;
-    cout << fibonacci(x);
-    for (int i = 0; i < x; i++){
-        cout << fibonacci(x);
-        x++;
-   }
+    int x = 4;
+    int y = fibonacci(x);
+    cout << y;
+    return 0;
 }
-int fibonacci(int n){
-    if ( n <= 1 && n >= 0)
-        return n;
-    else if ( n > 1 ) 
-        return (fibonacci(n - 1) + fibonacci(n - 2));
-    else 
-        return -1;
+
+int fibonacci(int x) {
+    if (x == 1 or x == 0)
+        return x;
+    else
+        return fibonacci(x-1)+fibonacci(x-2);
 }
