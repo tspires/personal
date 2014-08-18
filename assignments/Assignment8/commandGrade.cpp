@@ -12,7 +12,7 @@ struct Record
 
 void calculateAvg(Record& record);
 void writeRecord(Record record);
-char getGrade(double numericGrade);
+char getGrade(double score);
 
 int main(int argc, char *argv[]) {
     Record record;
@@ -38,24 +38,24 @@ int main(int argc, char *argv[]) {
         writeRecord(record);
 }
 
-char getGrade(double numericGrade) {
-    char alpha;
-    if (numericGrade < 60) {
-    alpha = 'F';
+char getGrade(double score) {
+    char letterGrade;
+    if (score < 60) {
+    letterGrade = 'F';
     }
-    else if (numericGrade < 70) {
-    alpha = 'D';
+    else if (score < 70) {
+    letterGrade = 'D';
     }
-    else if (numericGrade < 80) {
-    alpha = 'C';
+    else if (score < 80) {
+    letterGrade = 'C';
     }
-    else if (numericGrade < 90) {
-    alpha = 'B';
+    else if (score < 90) {
+    letterGrade = 'B';
     }
     else {
-    alpha = 'A';
+    letterGrade = 'A';
     }
-    return alpha;
+    return letterGrade;
 }
 
 
@@ -77,10 +77,8 @@ void calculateAvg(Record& record)
     const double EXAM_WEIGHT = 0.5;
     const double MIDTERM_WEIGHT = 0.25;
     const double QUIZ_WEIGHT = 0.25;
-    double quizOneGrade;
-    double quizTwoGrade;
-    quizOneGrade = 100 * record.quizOne / 10.0;
-    quizTwoGrade = 100 * record.quizTwo / 10.0;
+    double quizOneGrade = 100 * record.quizOne / 10.0;
+    double quizTwoGrade = 100 * record.quizTwo / 10.0;
     double quizAvg = (quizOneGrade + quizTwoGrade) / 2;
     record.avg = quizAvg * QUIZ_WEIGHT + record.midterm * MIDTERM_WEIGHT + 
     record.final * EXAM_WEIGHT;

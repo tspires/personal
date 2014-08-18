@@ -70,10 +70,8 @@ void calculateAvg(Record& record)
   const double EXAM_WEIGHT = 0.5;
   const double MIDTERM_WEIGHT = 0.25;
   const double QUIZ_WEIGHT = 0.25;
-  double quizOneGrade;
-  double quizTwoGrade;
-  quizOneGrade = 100 * record.quizOne / 10.0;
-  quizTwoGrade = 100 * record.quizTwo / 10.0;
+  double quizOneGrade = 100 * record.quizOne / 10.0;
+  double quizTwoGrade = 100 * record.quizTwo / 10.0;
   double quizAvg = (quizOneGrade + quizTwoGrade) / 2;
   record.avg = quizAvg * QUIZ_WEIGHT + record.midterm * MIDTERM_WEIGHT + 
   record.final * EXAM_WEIGHT;
