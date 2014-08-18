@@ -11,7 +11,7 @@ struct Record
 
 void calculateAvg(Record& record);
 void writeRecord(Record record);
-char getGrade(double numericGrade);
+char getGrade(double score);
  
 int main()
 {
@@ -30,25 +30,25 @@ int main()
   writeRecord(record);
 }
  
-char getGrade(double numericGrade)
+char getGrade(double score)
 {
-  char alpha;
-  if (numericGrade < 60) {
-    alpha = 'F';
+  char letterGrade;
+  if (score < 60) {
+    letterGrade = 'F';
     }
-  else if (numericGrade < 70) {
-    alpha = 'D';
+  else if (score < 70) {
+    letterGrade = 'D';
     }
-  else if (numericGrade < 80) {
-    alpha = 'C';
+  else if (score < 80) {
+    letterGrade = 'C';
     }
-  else if (numericGrade < 90) {
-    alpha = 'B';
+  else if (score < 90) {
+    letterGrade = 'B';
     }
   else {
-    alpha = 'A';
+    letterGrade = 'A';
     }
-  return alpha;
+  return letterGrade;
 }
  
  
