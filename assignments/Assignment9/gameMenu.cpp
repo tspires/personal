@@ -1,10 +1,24 @@
 #include <iostream>
 #include <sstream>
 #include <string>
+#include <stdlib.h>
+
+#include "guessing.h"
+
+const std::string APPLICATION_NAME = "Game Menu";
 std::string ctos(char c);
 void repeat( void (*f)() );
 bool in(std::string x, std::string y[]);
 void run();
+void displayMenu();
+void clear();
+void parseInput();
+bool validate(std::string input);
+
+void helloWorld();
+void echo();
+void guessing();
+
 int main() {
     repeat(run);
     return 0;
@@ -12,9 +26,43 @@ int main() {
 //Function: run
 //Description: 
 void run() {
-    
+    displayMenu();
+    parseInput();
+}
+//Function: displayMenu
+//Description: The function contains the definition of the menu and displays the menu
+void displayMenu() {
+    clear();
+    std::cout << APPLICATION_NAME << std::endl;
+    std::cout << "1. Hello World " << std::endl;
+    std::cout << "2. Echo " << std::endl;
+    std::cout << "3. Number Guessing " << std::endl;
+    std::cout << "4. Quit " << std::endl;
+    std::cout << std::endl;
+    std::cout << "Selection: ";
 }
 
+void parseInput() {
+    char response;
+    std::cin >> response;
+    switch(response) {
+        case '1':
+            clear();
+            helloWorld();
+            break;
+        case '2':
+            clear();
+            echo();
+            break;
+        case '3':
+            clear();
+            guessing();
+            break;
+        case '4':
+            clear();
+            break;
+    }
+}
 
 //Function: repeat
 //Description: The repeat function calls the function that is passed to it
@@ -47,4 +95,29 @@ std::string ctos(char c) {
     ss << c;
     ss >> s;
     return s;
+}
+
+void clear() {
+    system("clear");   
+}
+void helloWorld() {
+    std::cout << "Hello World!" << std::endl;
+}
+void echo() {
+    std::string input;
+    std::cout << "Echo" << std::endl;
+    std::cout << "Enter text: ";
+    std::cin.ignore();
+    std::getline(std::cin,input);
+    if (validate(input)) {
+        std::cout << input << std::endl;
+    }
+    else {
+        std::cout << "Invalid input!" << std::endl;
+    }
+}
+
+bool validate(std::string input) {
+    return true;
+
 }
