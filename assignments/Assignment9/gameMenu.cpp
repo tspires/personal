@@ -6,6 +6,7 @@
 #include "guessing.h"
 
 const std::string APPLICATION_NAME = "Game Menu";
+
 std::string ctos(char c);
 void repeat( void (*f)() );
 bool in(std::string x, std::string y[]);
