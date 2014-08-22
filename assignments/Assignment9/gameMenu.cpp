@@ -44,24 +44,29 @@ void displayMenu() {
 }
 
 void parseInput() {
-    char response;
-    std::cin >> response;
-    switch(response) {
-        case '1':
-            clear();
-            helloWorld();
-            break;
-        case '2':
-            clear();
-            echo();
-            break;
-        case '3':
-            clear();
-            guessing();
-            break;
-        case '4':
-            clear();
-            break;
+    char resp;
+    std::cin >> resp;
+    if (isdigit(resp)){
+        switch(resp) {
+            case '1':
+                clear();
+                helloWorld();
+                break;
+            case '2':
+                clear();
+                echo();
+                break;
+            case '3':
+                clear();
+                guessing();
+                break;
+            case '4':
+                clear();
+                break;
+        }
+    }
+    else {
+        std::cout << "Invalid input! Please enter a number" << std::endl;
     }
 }
 
