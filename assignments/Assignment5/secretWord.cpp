@@ -15,6 +15,7 @@ int main() {
          //Get secret from user
         cout << "Please enter the secret. " << endl;
         cin >> secretStr;
+        cout << string(50,'\n');
         char guess;
         bool isWon = false;
         //Convert our secret string into a character array
